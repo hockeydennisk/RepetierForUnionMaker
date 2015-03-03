@@ -42,6 +42,10 @@
 #include "pins.h"
 
 // ################## EDIT THESE SETTINGS MANUALLY ################
+
+/*Modified-By-DennisKuo,2015-03-03*/
+#define REMOVE_REDUNDANT_MENU
+
 // ################ END MANUAL SETTINGS ##########################
 
 #define FAN_BOARD_PIN -1
