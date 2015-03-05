@@ -435,10 +435,7 @@ UI_MENU(ui_menu_extruder,UI_MENU_EXTRUDER,UI_MENU_BACKCNT+UI_MENU_BEDCNT+UI_MENU
 
 // **** Quick menu
 #if PS_ON_PIN>=0
-/*Modified-By-DennisKuo,2015-03-03*/
-#ifndef REMOVE_REDUNDANT_MENU
 UI_MENU_ACTIONCOMMAND(ui_menu_quick_power,UI_TEXT_POWER,UI_ACTION_POWER);
-#endif  //REMOVE_REDUNDANT_MENU
 #define MENU_PSON_COUNT 1
 #define MENU_PSON_ENTRY ,&ui_menu_quick_power
 #else
@@ -456,16 +453,10 @@ UI_MENU_ACTIONCOMMAND(ui_menu_toggle_light,UI_TEXT_LIGHTS_ONOFF,UI_ACTION_LIGHTS
 UI_MENU_ACTIONCOMMAND(ui_menu_quick_preheat_pla,UI_TEXT_PREHEAT_PLA,UI_ACTION_PREHEAT_PLA);
 UI_MENU_ACTIONCOMMAND(ui_menu_quick_preheat_abs,UI_TEXT_PREHEAT_ABS,UI_ACTION_PREHEAT_ABS);
 UI_MENU_ACTIONCOMMAND(ui_menu_quick_cooldown,UI_TEXT_COOLDOWN,UI_ACTION_COOLDOWN);
-/*Modified-By-DennisKuo,2015-03-03*/
-#ifndef REMOVE_REDUNDANT_MENU
 UI_MENU_ACTIONCOMMAND_FILTER(ui_menu_quick_origin,UI_TEXT_SET_TO_ORIGIN,UI_ACTION_SET_ORIGIN,0,MENU_MODE_PRINTING);
-#endif  //REMOVE_REDUNDANT_MENU
 UI_MENU_ACTIONCOMMAND_FILTER(ui_menu_quick_stopstepper,UI_TEXT_DISABLE_STEPPER,UI_ACTION_DISABLE_STEPPER,0,MENU_MODE_PRINTING);
 #if FEATURE_BABYSTEPPING
-/*Modified-By-DennisKuo,2015-03-03*/
-#ifndef REMOVE_REDUNDANT_MENU
 UI_MENU_CHANGEACTION(ui_menu_quick_zbaby,UI_TEXT_Z_BABYSTEPPING,UI_ACTION_Z_BABYSTEPS);
-#endif  //REMOVE_REDUNDANT_MENU
 #define BABY_CNT 1
 #define BABY_ENTRY ,&ui_menu_quick_zbaby
 #else
@@ -482,7 +473,12 @@ UI_MENU_ACTIONCOMMAND(ui_menu_quick_debug,"Write Debug",UI_ACTION_WRITE_DEBUG);
 #define DEBUG_PRINT_COUNT 0
 #define DEBUG_PRINT_EXTRA
 #endif
+/*Modified-By-DennisKuo,2015-03-05*/
+#ifndef REMOVE_REDUNDANT_MENU
 #define UI_MENU_QUICK {UI_MENU_ADDCONDBACK &ui_menu_home_all BABY_ENTRY ,&ui_menu_quick_speedmultiply,&ui_menu_quick_flowmultiply UI_TOOGLE_LIGHT_ENTRY ,&ui_menu_quick_preheat_pla,&ui_menu_quick_preheat_abs,&ui_menu_quick_cooldown,&ui_menu_quick_origin,&ui_menu_quick_stopstepper MENU_PSON_ENTRY DEBUG_PRINT_EXTRA}
+#else
+#define UI_MENU_QUICK {UI_MENU_ADDCONDBACK &ui_menu_home_all ,&ui_menu_quick_speedmultiply,&ui_menu_quick_flowmultiply UI_TOOGLE_LIGHT_ENTRY ,&ui_menu_quick_preheat_pla,&ui_menu_quick_preheat_abs,&ui_menu_quick_cooldown,&ui_menu_quick_stopstepper DEBUG_PRINT_EXTRA}
+#endif  //REMOVE_REDUNDANT_MENU
 UI_MENU(ui_menu_quick,UI_MENU_QUICK,8+BABY_CNT+UI_MENU_BACKCNT+MENU_PSON_COUNT+DEBUG_PRINT_COUNT+UI_TOGGLE_LIGHT_COUNT);
 
 // **** Fan menu
