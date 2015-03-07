@@ -16,6 +16,9 @@
 
 */
 
+/*Modified-By-DennisKuo,2015-03-05: workaround for deprecated prog_char arduino 1.6.0 compile error.*/
+#define prog_char char
+
 #define UI_MAIN
 #include "Repetier.h"
 extern const int8_t encoder_table[16] PROGMEM ;
